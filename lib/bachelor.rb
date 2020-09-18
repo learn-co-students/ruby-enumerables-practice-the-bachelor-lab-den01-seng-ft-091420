@@ -63,13 +63,18 @@ def get_occupation(bachelor, hometown)
   contestant_occupation["occupation"]
 end
 
-def get_average_age_for_season(data, season)
-  total_age = 0
-  number_of_contestants = 0
-
-  data[season].each do |contestant|
-    total_age += (contestant["age"]).to_i
-    number_of_contestants += 1
+def get_average_age_for_season(bachelor, season)
+  sum = bachelor[season].reduce(0) do |age , contestant|
+    age + contestant["age"].to_i
   end
-  (total_age / number_of_contestants.to_f).round(0)
+  (sum / bachelor[season].length.to_f).round(0)
+  
+  # total_age = 0
+  # number_of_contestants = 0
+
+  # data[season].each do |contestant|
+  #   total_age += (contestant["age"]).to_i
+  #   number_of_contestants += 1
+  # end
+  # (total_age / number_of_contestants.to_f).round(0)
 end
